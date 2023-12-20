@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'shop',
    #third party app
     'allauth',
     'allauth.account',
@@ -120,7 +121,7 @@ MEDIA_ROOT = BASE_DIR.joinpath('media')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL ='index'
 LOGIN_URL = 'login'
 
