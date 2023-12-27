@@ -59,7 +59,7 @@
                             <td>{{product.category|title}}</td>
                             <td>{{product.sprice}}</td>
                             <td>
-                                <a href="#" class="btn">View</a>
+                                <a href="{% url 'product_detail' product.slug %}" class="btn">View</a>
                                 <a href="#" class="btn btn-success">Add to card</a>
                             </td>
 
@@ -80,6 +80,31 @@
 
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <strong>Brands:</strong>
+            {% for brand in brands %}
+                <a class="badge text-bg-dark text-decoration-none" href="{% url 'brand_products' brand.slug %}">
+                    {{brand.name}}
+                </a>
+            {% empty %}
+                <span>No Brands with '{{q}}'</span>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <strong>Categories:</strong>
+            {% for cat in categories %}
+                <a class="badge text-bg-dark text-decoration-none" href="{% url 'category_products' cat.slug %}">
+                    {{cat.name}}
+                </a>
+            {% empty %}
+                <span>No Categories with '{{q}}'</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 </div>
 
 

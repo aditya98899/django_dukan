@@ -9,4 +9,6 @@ urlpatterns = [
   
     # searching products
     path('products/search/', views.search_products, name='search_products'),
+     path('product/<slug:slug>/', views.product_detail, name='product_detail'),
+
 ]
