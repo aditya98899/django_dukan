@@ -1,6 +1,36 @@
 {% extends 'layout/base.html' %}
-
+{% load static %}
 {% block body %}
-    
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="slider-top">
+                <img src="{% static 'images/images1.jpg' %}" alt="1" height="400">
+                <img src="{% static 'images/images2.jpg' %}" alt="2"  height="400">
+                <img src="{% static 'images/images3.jpg' %}" alt="3"  height="400">
+                <img src="{% static 'images/images4.jpg' %}" alt="4"  height="400">
+                <img src="{% static 'images/images5.jpg' %}" alt="5"  height="400">
+                
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock body %}
+
+{% block js %}
+    <script>
+        $(document).ready (() =>{
+            $('.slider-top').slick({
+                dots:true,
+                
+                autoplay: true,
+                autoplaySpeed: 100,
+               
+                
+            })
+            
+        })
+    </script>
+{% endblock js %}
+    
     

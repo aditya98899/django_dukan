@@ -7,6 +7,13 @@
     body {
         background-color: #fefefe;
     }
+    
+    .product-img {
+        height: 300px;
+        object-fit: cover;
+        object-position: top;
+    }
+
 </style>
 {% endblock css %}
 
@@ -61,7 +68,8 @@
                     </a>
                 </li>
                 <li class="list-group-item">
-                    category <a href="{% url 'category_products' product.category.slug %}">{{product.category}}
+                    category <a href="{% url 'category_products' product.category.slug %}">
+                        {{product.category}}
 
                     </a>
                 </li>
@@ -72,7 +80,14 @@
 
                 <li class="list-group-item">seller
                     <a href="#">
+                        
+                        {% if product.seller %}
                         {{product.seller}}
+                        {% else %}
+                        No Seller Detail
+                        {% endif %}
+                            
+                        
                     </a>
                 </li>
             </ul>
@@ -80,4 +95,36 @@
         </div>
     </div>
 </div>
-{% endblock body %}
+ <div class="row">
+        
+        <div class="col-md-8 py-2 offset-md-4">
+            {% for item in reviews %}
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{item.user.username}}</h4>
+                    <p class="card-text">{{item.review}}</p>
+                </div>
+                <div class="card-footer">
+                    Rating: {{item.rating}}⭐ out of 10
+                </div>
+            </div>
+            {% empty %}
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">Alert Heading</h4>
+                <p>Alert Content</p>
+                <hr />
+                <p class="mb-0">Alert Description</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <h1>Similar Product</h1>
+        {% for item in sim_cat_products %}
+        {% include 'components/product_card.html' with product=item %}
+        {% empty %}
+        <h4 class="text-center text-danger">No similar category products found</h4>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, Brand, Category, ProductImage,ProductReview
+from .models import Product, Brand, Category, ProductImage,ProductReview,Seller
 from .filters import ProductFilter
 from django.contrib import messages
 
@@ -32,6 +32,16 @@ def category_products(request, category):
     })
 
 
+def seller_products(request, id):
+    seller = Seller.objects.get(id=id)
+    products=Product.objects.filter(seller=seller)
+    return render(request,'shop/seller_product.html',{
+        'seller': seller,
+        'products': products,
+        'brands': Brand.objects.all(),
+        'categories': Category.objects.all(),
+        'seller': Seller.object.all(),
+    })
 
 def search_products(request):
     q = request.GET.get('q')
@@ -57,5 +67,5 @@ def product_detail (request,slug):
         'product': product,
         'images': images,
         'reviews': reviews,
-        ' sim_cat_products':  sim_cat_products
+        'sim_cat_products':  sim_cat_products
     })
